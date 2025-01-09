@@ -29,19 +29,19 @@ COLORS = {
 
 def game_instructions():
     """Print the game instructions in the terminal."""
-    print("Bievenue dans Wordle game!")
+    print(f"{COLORS['GREEN']}===Bievenue dans Wordle game!==={COLORS['RESET']}")
     print("Devinez un mots de 5 lettres en 6 essais.")
     print("Feedback:  ")
     print(f"{COLORS['GREEN']}GREEN{COLORS['RESET']} - Lettre correcte, position correcte .")
     print(f"{COLORS['YELLOW']}YELLOW{COLORS['RESET']}  - Lettre correcte, position incorrecte. ")
     print(f"{COLORS['RED']}RED{COLORS['RESET']} - letters incorrecte. ")
-    print("Bonne chances !\n")      
+    print(f"{COLORS['GREEN']}Bonne chance !{COLORS['RESET']}\n")      
     pass
 
 
 def game_start_display():
     """Print the starting message for the game."""
-    print("=== Wordle commence maintenant ! ===")
+    print(f"{COLORS['GREEN']}=== Wordle commence maintenant ! ==={COLORS['RESET']}")
     print("Essayez de deviner le mot secret en 6 tentatives ou moins.\n")
     pass
 
@@ -63,7 +63,7 @@ def display_word_feedback(guess: str, feedback: List[str]) -> str:
 
 def display_win(word: str, attempt: int) -> None:
     """Display for winning"""
-    print("Félicitation vous avez deviner le mot '{word}' en {attempt} fois ")
+    print(f"{COLORS['GREEN']} Félicitation vous avez deviner le mot '{word}' en {attempt} fois {COLORS['RESET']}")
     print("Vous êtes un(e) champion(ne) du Wordle !\n")
 
     pass
@@ -71,8 +71,8 @@ def display_win(word: str, attempt: int) -> None:
 
 def display_lost(word: str) -> None:
     """Display for losing"""
-    print(f"Dommage ! Vous avez utilisé toutes vos tentatives.")
-    print(f"Le mot correct était '{word}'. Bonne chance pour la prochaine fois !\n")
+    print(f"{COLORS['RED']}Dommage ! Vous avez utilisé toutes vos tentatives.{COLORS['RESET']}")
+    print(f"Le mot correct était ' {COLORS['GREEN']}{word}{COLORS['RESET']}'. Bonne chance pour la prochaine fois !\n")
     pass
 
 
