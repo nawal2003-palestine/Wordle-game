@@ -1,108 +1,164 @@
-# Wordle-game
-Here’s a well-organized **README.md** in English for your Wordle project, complete with colors (using emojis) and examples to make it visually appealing and easy to understand:
+# Lab project 3 : Wordle game
 
----
+This is a python implementation of the Wordle Game.
 
-# **Lab Project 3: Wordle Game**
+Based on the online word game created and developed by Welsh software
+engineer Josh Wardle. Players have six attempts to guess a five-letter word,
+with feedback given for each guess in the form of coloured tiles indicating
+when letters match or occupy the correct position.
 
-## **Description**
+The current version of this project is for educational purposes.
 
-This project is a **Python implementation** of the popular game **Wordle**, created as part of an educational lab assignment at **ENSAT 2024/2025**. Wordle is a word-guessing game where players have six attempts to guess a five-letter word. Feedback is provided after each guess using colors:
+ENSAT 2024/2025
 
-- 🟩 **Green**: The letter is correct and in the right position.  
-- 🟨 **Yellow**: The letter is correct but in the wrong position.  
-- 🟥 **Red**: The letter is not in the word.
+The project has the following modules:
 
----
+- `display.py` : Module for displaying colored text in the terminal for the Wordle game.
+- `word_choice.py` : Module for getting all words from `words.txt` and choosing a random word.
+- `validate_guess.py` : Module for validating input guess.
+- `wordle.py`: Module for the wordle game
 
-## **Features**
+5-letter words of the English dictionary are in `wordle_package/assets/words.txt`. Each line of the document has a word.
 
-The project is modular and divided into several components for better organization:
+Download the skeleton for the lab and implement the functions for the game. The repository for the lab can be found [here](https://github.com/calleann/wordle_lab).
 
-- **`display.py`**: Manages the game's visuals and feedback display.  
-- **`word_choice.py`**: Fetches words from `words.txt` and selects a random word.  
-- **`validate_guess.py`**: Validates player inputs to ensure they follow the rules.  
-- **`wordle.py`**: Contains the main logic for gameplay and feedback generation.
+## word choice
 
-All valid five-letter words are stored in `wordle_package/assets/words.txt`.
+The module `word_choice` has two functionalities. The first is to get all the words from `words.txt` and the second is to pick a random word from the list of words.
 
----
+1. In order to get all the words from the text file, you can use:
+   - `open()` to read a file
+   - `os.path` to lookup the location of the file
 
-## **Project Structure**
+    ```python
+        def read_words_file() -> List[str]:
+            """Read all valid 5-letter words.
+            Return: a list of words strings
+            """
+            pass
+    ```
 
-```
-wordle_game/
-├── wordle_package/
-│   ├── __init__.py         # Empty file to declare this as a package
-│   ├── display.py          # Handles display logic
-│   ├── validate_guess.py   # Validates user guesses
-│   ├── word_choice.py      # Chooses a random word from the list
-│   ├── wordle.py           # Main game logic
-│   ├── assets/
-│   │   └── words.txt       # Contains the list of valid five-letter words
-├── main.py                 # Entry point to run the game
-└── README.md               # Project documentation
-```
+2. To pick a random word from a list of words, you can use:
+    - `random.choice()` to pick an element from a list
 
----
+    ```python
+        def choose_random_word(words: List[str]) -> str:
+            """Choose the starting word for the game.
+            Return: a random word on the list
+            """
+            pass
+    ```
 
-## **Installation Instructions**
+## validate guess
 
-### **Prerequisites**
+The main goal for the `validate_guess` module is to validate the input from the user.
 
-- Python 3.8 or later.  
-- A terminal or IDE to execute Python scripts.  
+1. The first function checks whether an input is the correct format. The input needs to 5 letter word in lower case
 
-### **Steps**
+    ```python
+        def check_guess_valid(guess: str) -> bool:
+            """Check if the guess is a valid 5-letter word
+            Return: True if the guess is valid, False otherwise
+            """
+            pass
+    ```
 
-1. Clone this repository to your local machine:  
-   ```bash
-   git clone https://github.com/your-username/wordle-game.git
-   cd wordle-game
-   ```
+2. The second function is a while loop that asks the user to input valid word. In the loop, you must check that the word is valid, not previously guessed and exists in `words.txt`. The function return valid guess of the user.
 
-2. Ensure the `words.txt` file contains valid five-letter words, one word per line.  
+    ```python
+        def get_valid_guess(all_words: List[str], guesses: List[str]) -> str:
+            """Get a valid guess from the user
+                Must be:
+                1. 5 letter word (lower case)
+                2. not previously guessed
+                3. exists in words.txt
+            """
+            # Ask user for a word
+            pass
+    ```
 
-3. Run the game:  
-   ```bash
-   python main.py
-   ```
+## Wordle
 
----
+Moving now to the main part of the game. The `wordle` module has two functions:
 
-## **Game Rules**
+1. The first functions checks if the guess is the same as a word:
 
-1. You have **six attempts** to guess the mystery word.  
-2. Each guess must be a **valid five-letter word**.  
-3. After each guess, the game provides feedback:  
-   - 🟩 **Green**: Correct letter in the correct position.  
-   - 🟨 **Yellow**: Correct letter, wrong position.  
-   - 🟥 **Red**: Incorrect letter.
+    ```python
+        def check_guess_correct(word: str, guess: str) -> bool:
+            """Check the guess against the word
+            Return: True if the guess is correct, False otherwise
+            """
+            pass
+    ```
 
----
+2. The second is a function that returns the feedback for the guess.
+    - `GREEN` for a correct letter in the correct place
+    - `YELLOW` for a correct letter in the wrong place
+    - `RED` for a wrong letter
 
-## **Example Gameplay**
+    The function should return a list such that each position has one of these three colors with their correct indication.
 
-Imagine the mystery word is **"apple"**. Here's how a game might progress:
+    ```python
+        def feed_back_word(word: str, guess: str) -> List[str]:
+            """Check the guess against the word and return the feedback
+            Return: a list with the feedback for each letter in the guess
+            """
+            # Initialize the feedback list
+            # It will contain the colors for each letter in the guess
+            # The default color is RED for all the letters
+            # GREEN for the correct letter in the correct position
+            # YELLOW for the correct letter in the wrong position
+            pass
+    ```
 
-| **Attempt** | **Result**        | **Explanation**                                              |
-|-------------|--------------------|--------------------------------------------------------------|
-| **grape**   | 🟥 🟨 🟩 🟥 🟥   | "p" is correct and in the right position (🟩). "a" is correct but misplaced (🟨). |
-| **plate**   | 🟩 🟩 🟥 🟥 🟥   | "p" and "l" are now in the correct positions (🟩).            |
-| **apple**   | 🟩 🟩 🟩 🟩 🟩   | All letters are correct, you win! 🎉                         |
+## Display
 
----
+The `display` module contains all the prompts for the game.
 
-## **Customization**
+1. Write functions for displaying the game instructions, the game start, the prompt for winning and losing
 
-- To add more words, update the `assets/words.txt` file with new five-letter words.  
-- Each word must appear on a new line.
+    ```python
+        def game_instructions():
+            """Print the game instructions in the terminal."""
+            pass
 
----
 
-## **Acknowledgments**
+        def game_start_display():
+            """Print the starting message for the game."""
+            pass
+    
 
-- This implementation is based on the original Wordle game by [Josh Wardle](https://www.powerlanguage.co.uk/wordle/).  
-- Created for **ENSAT 2024/2025** as an educational project.
-- Naoual Wafiq 
+        def display_win(word: str, attempt: int) -> None:
+            """Display for winning"""
+            pass
 
+
+        def display_lost(word: str) -> None:
+            """Display for losing"""
+            pass
+
+    ```
+
+2. Write a function that takes the guess and the feedback list and returns the guessed letter colored in their corresponding feedback position.
+    - You can `COLORS` dictionary for AINSI color formatting
+
+    ```python
+        def display_word_feedback(guess: str, feedback: List[str]) -> str:
+            """Display the coloured feedback for a guess."""
+            pass
+    ```
+
+## The main loop for the game
+
+Import all the modules to the main script and use all the aformentionned functionalities and implement the wordle game.
+
+1. The starting parameters should be:
+
+    ```python
+        attempt = 0
+        previous_guesses = list()
+    ```
+
+2. Fetch all the word from `words.txt` and pick a random `word`
+3. In each attempt, ask the user for a valid guess. Then check if they guessed correctly. If not show the feedback.
+4. Prompt for winning or losing the game.
